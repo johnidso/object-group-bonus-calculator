@@ -60,8 +60,8 @@ function bonusCalculator(array){
         bonusArray.push(new Employee(employee, .06));
       } else if (employee.reviewRating === 5){
         bonusArray.push(new Employee(employee, .1));
-    } return bonusArray;
-  }
+    } 
+  } return bonusArray;
 }
 
 console.log(bonusCalculator(employees));
