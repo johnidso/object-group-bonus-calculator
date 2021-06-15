@@ -41,3 +41,32 @@ const employees = [
 // Ask questions when you don't.
 
 console.log( employees );
+
+function Employee(employee, bonusPercentage){
+  this.name = employee.name;
+  this.bonusPercentage = bonusPercentage;
+  this.totalBonus = parseInt(employee.annualSalary) * bonusPercentage;
+  this.totalCompensation = parseInt(employee.annualSalary) + this.totalBonus;
+}
+
+function bonusCalculator(array){
+  let bonusArray = [];
+  for(let employee of array){
+    if(employee.reviewRating <= 2){
+      bonusArray.push(new Employee(employee, 0));
+    } else if (employee.reviewRating === 3){
+      bonusArray.push(new Employee(employee, .04));
+    }
+  } return bonusArray;
+}
+
+console.log(bonusCalculator(employees));
+
+// function Hat(type, color, size, isStylish){
+//   this.type = type;
+//   this.color = color;
+//   this.size = size;
+//   this.isStylish = isStylish;
+// }   // uses capital first letter by convention
+
+// const johnHat = new Hat('baseball', 'blue', 'xl')
