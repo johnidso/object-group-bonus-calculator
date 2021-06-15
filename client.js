@@ -56,6 +56,12 @@ function bonusCalculator(array){
       bonusArray.push(new Employee(employee, 0));
     } else if (employee.reviewRating === 3){
       bonusArray.push(new Employee(employee, .04));
+    } else if (employee.reviewRating === 4){
+      bonusArray.push(new Employee(employee, .06));
+    } else if (employee.reviewRating === 5){
+      bonusArray.push(new Employee(employee, .1));
+    } else if (employee.reviewRating === 3){
+      bonusArray.push(new Employee(employee, .04));
     }
   } return bonusArray;
 }
@@ -70,3 +76,8 @@ console.log(bonusCalculator(employees));
 // }   // uses capital first letter by convention
 
 // const johnHat = new Hat('baseball', 'blue', 'xl')
+
+
+/*
+if employee number = 4 
+then bonusForRating (.05)
