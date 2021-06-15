@@ -60,9 +60,6 @@ function bonusCalculator(array){
       bonusArray.push(new Employee(employee, .06));
     } else if (employee.reviewRating === 5){
       bonusArray.push(new Employee(employee, .1));
-    } else if (employee.reviewRating === 3){
-      bonusArray.push(new Employee(employee, .04));
-    }
   } return bonusArray;
 }
 
