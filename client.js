@@ -91,7 +91,7 @@ function getBonusPercentage(employee){
   let bonus = 0;
   bonus = bonusByRating(employee.reviewRating);
   bonus += longevityBonus(employee.employeeNumber);
-  bonus += setBonusRich(employee.income);
+  bonus += setBonusRich(employee.annualSalary);
   return assessBonus(bonus);
 }
 
