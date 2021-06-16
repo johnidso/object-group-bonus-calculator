@@ -40,7 +40,6 @@ const employees = [
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
-console.log( employees );
 
 function Employee(employee, bonusPercentage){
   this.name = employee.name;
@@ -49,19 +48,86 @@ function Employee(employee, bonusPercentage){
   this.totalCompensation = parseInt(employee.annualSalary) + this.totalBonus;
 }
 
-function bonusCalculator(array){
-  let bonusArray = [];
-    for(let employee of array){
-      if(employee.reviewRating <= 2){
-        bonusArray.push(new Employee(employee, 0));
-      } else if (employee.reviewRating === 3){
-        bonusArray.push(new Employee(employee, .04));
-      } else if (employee.reviewRating === 4){
-        bonusArray.push(new Employee(employee, .06));
-      } else if (employee.reviewRating === 5){
-        bonusArray.push(new Employee(employee, .1));
-    } 
-  } return bonusArray;
+
+function bonusByRating(rating){
+  // assess bonus level
+  let percentage;
+  switch (rating) {
+    case 3:
+      percentage = .04;
+      break;
+    case 4:
+      percentage = .06;
+      break;
+    case 5:
+      percentage = .1;
+      break;
+    default:
+      percentage = 0;
+      break;
+  }
+  return percentage;
 }
 
-console.log(bonusCalculator(employees));
+function longevityBonus (employeeNumber){
+  return employeeNumber.length === 4 ? 5 : 0;
+}
+
+function setBonusRich(income){
+  return Number(income) > 65000 ? (-0.01) : 0;
+}
+
+function assessBonus(bonusValue){
+  if (bonusValue > .13){
+    return .13;
+  } else if (bonusValue < 0){
+    return 0;
+  } else {
+    return bonusValue;
+  }
+}
+
+function getBonusPercentage(employee){
+  let bonus = 0;
+  bonus = bonusByRating(employee.reviewRating);
+  bonus += longevityBonus(employee.employeeNumber);
+  bonus += setBonusRich(employee.income);
+  return assessBonus(bonus);
+}
+
+function calculateBonuses(employeeArray){
+  let EmployeeList = [];
+  for (const employee of employeeArray){
+    let bonusPercentage = getBonusPercentage(employee);
+    const Emp = new Employee(employee, bonusPercentage);
+    EmployeeList.push(Emp);
+  }
+  return EmployeeList;
+}
+
+console.log(calculateBonuses(employees));
+
+
+
+// function Employee(employee, bonusPercentage){
+//   this.name = employee.name;
+//   this.bonusPercentage = bonusPercentage;
+//   this.totalBonus = parseInt(employee.annualSalary) * bonusPercentage;
+//   this.totalCompensation = parseInt(employee.annualSalary) + this.totalBonus;
+// }
+
+// function bonusCalculator(array){
+//   let bonusArray = [];
+//     for(let employee of array){
+//       if(employee.reviewRating <= 2){
+//         bonusArray.push(new Employee(employee, 0));
+//       } else if (employee.reviewRating === 3){
+//         bonusArray.push(new Employee(employee, .04));
+//       } else if (employee.reviewRating === 4){
+//         bonusArray.push(new Employee(employee, .06));
+//       } else if (employee.reviewRating === 5){
+//         bonusArray.push(new Employee(employee, .1));
+//     } 
+//   } return bonusArray;
+// }
+
